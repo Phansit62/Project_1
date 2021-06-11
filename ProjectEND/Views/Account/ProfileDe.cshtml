@@ -1,0 +1,46 @@
+﻿@model ProjectEND.Models.DataUser
+
+@{
+    ViewBag.Title = "ProfileDe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div>
+    <h4>ข้อมูลผู้ใช้</h4>
+    <hr />
+
+    <dl class="dl-horizontal" style="text-align:center;font-size:20px">
+        <dt>
+            @Html.DisplayNameFor(model => model.User_id) : @Html.DisplayFor(model => model.User_id)
+        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.User_FristName) :@Html.DisplayFor(model => model.Title.Title_name) @Html.DisplayFor(model => model.User_FristName)  @Html.DisplayFor(model => model.User_LastName)
+        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.User_Email) : @Html.DisplayFor(model => model.User_Email)
+        </dt>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User_Phone) : @Html.DisplayFor(model => model.User_Phone)
+        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.User_Image)
+        </dt>
+        <dt>
+            @if (Model.User_Image != null)
+            {
+                <img src="data:image/png;base64,@Convert.ToBase64String(Model.User_Image)"
+                     width="100" height="100" style="border-radius: 20px">
+            }
+            else { 
+                <a>ไม่มีรูปโปรไฟล์</a>
+            }
+        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.StatusUser.Sta_User_type) : @Html.DisplayFor(model => model.StatusUser.Sta_User_type)
+        </dt>
+        <dt>
+        </dt>
+    </dl>
+</div>

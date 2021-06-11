@@ -1,0 +1,1383 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ProjectDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Admin_Id" />
+          </Key>
+          <Property Name="Admin_Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Admin_Pass" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CatePrice">
+          <Key>
+            <PropertyRef Name="CateP_id" />
+          </Key>
+          <Property Name="CateP_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoomPrice" Type="money" />
+        </EntityType>
+        <EntityType Name="DataUser">
+          <Key>
+            <PropertyRef Name="User_id" />
+          </Key>
+          <Property Name="User_id" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="Title_id" Type="int" />
+          <Property Name="User_FristName" Type="varchar" MaxLength="200" />
+          <Property Name="User_LastName" Type="varchar" MaxLength="200" />
+          <Property Name="User_Email" Type="varchar" MaxLength="200" />
+          <Property Name="User_Phone" Type="varchar" MaxLength="10" />
+          <Property Name="User_Image" Type="image" />
+          <Property Name="Password" Type="varchar" MaxLength="100" />
+          <Property Name="Sta_User_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Dormitory">
+          <Key>
+            <PropertyRef Name="Doc_id" />
+          </Key>
+          <Property Name="Doc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Doc_Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Oder_Id" />
+          </Key>
+          <Property Name="Oder_Id" Type="int" Nullable="false" />
+          <Property Name="User_Id" Type="varchar" MaxLength="13" />
+          <Property Name="Room_Id" Type="int" />
+          <Property Name="Date_In" Type="date" />
+          <Property Name="Sta_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="Payment_Id" />
+          </Key>
+          <Property Name="Payment_Id" Type="int" Nullable="false" />
+          <Property Name="PaymentOrder_Id" Type="int" />
+          <Property Name="Payment_Date" Type="date" />
+          <Property Name="Payment_Pic" Type="image" />
+          <Property Name="StaPay_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="PaymentRoomBill">
+          <Key>
+            <PropertyRef Name="PaymentBill_Id" />
+          </Key>
+          <Property Name="PaymentBill_Id" Type="int" Nullable="false" />
+          <Property Name="PaymentRoomBill_id" Type="int" />
+          <Property Name="PaymentBill_date" Type="date" />
+          <Property Name="PaymentPic" Type="image" />
+          <Property Name="StaPayBill_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="Room_id" />
+          </Key>
+          <Property Name="Room_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Room_num" Type="int" />
+          <Property Name="Doc_id" Type="int" />
+          <Property Name="StaRoom_ID" Type="int" />
+          <Property Name="CateP_id" Type="int" />
+        </EntityType>
+        <EntityType Name="RoomBill">
+          <Key>
+            <PropertyRef Name="RoomBill_Id" />
+          </Key>
+          <Property Name="RoomBill_Id" Type="int" Nullable="false" />
+          <Property Name="Order_Id" Type="int" />
+          <Property Name="Water" Type="int" />
+          <Property Name="Ele" Type="int" />
+          <Property Name="Room_Price" Type="int" />
+          <Property Name="Total_Price" Type="int" />
+          <Property Name="Bill_Date_Out" Type="date" />
+          <Property Name="StaBill_id" Type="int" />
+        </EntityType>
+        <EntityType Name="StatusOrder">
+          <Key>
+            <PropertyRef Name="Sta_Id" />
+          </Key>
+          <Property Name="Sta_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sta_Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="StatusPayment">
+          <Key>
+            <PropertyRef Name="StaPay_Id" />
+          </Key>
+          <Property Name="StaPay_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StaPay_Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="StatusRoom">
+          <Key>
+            <PropertyRef Name="StaRoom_Id" />
+          </Key>
+          <Property Name="StaRoom_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StaRoom_Type" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="StatusUser">
+          <Key>
+            <PropertyRef Name="Sta_User_id" />
+          </Key>
+          <Property Name="Sta_User_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sta_User_type" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Title">
+          <Key>
+            <PropertyRef Name="Title_id" />
+          </Key>
+          <Property Name="Title_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title_name" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ProjectD.dbo.ViewOrder' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewOrder">
+          <Key>
+            <PropertyRef Name="Oder_Id" />
+            <PropertyRef Name="Title_id" />
+            <PropertyRef Name="User_id" />
+            <PropertyRef Name="Doc_id" />
+            <PropertyRef Name="Room_id" />
+            <PropertyRef Name="CateP_id" />
+            <PropertyRef Name="Sta_Id" />
+          </Key>
+          <Property Name="Oder_Id" Type="int" Nullable="false" />
+          <Property Name="Title_id" Type="int" Nullable="false" />
+          <Property Name="Title_name" Type="varchar" MaxLength="10" />
+          <Property Name="User_id" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="User_FristName" Type="varchar" MaxLength="200" />
+          <Property Name="User_LastName" Type="varchar" MaxLength="200" />
+          <Property Name="User_Phone" Type="varchar" MaxLength="10" />
+          <Property Name="Doc_id" Type="int" Nullable="false" />
+          <Property Name="Doc_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Room_id" Type="int" Nullable="false" />
+          <Property Name="CateP_id" Type="int" Nullable="false" />
+          <Property Name="Sta_Id" Type="int" Nullable="false" />
+          <Property Name="Sta_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Room_num" Type="int" />
+          <Property Name="Date_In" Type="date" />
+          <Property Name="RoomPrice" Type="money" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ProjectD.dbo.ViewPayBill' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewPayBill">
+          <Key>
+            <PropertyRef Name="PaymentBill_Id" />
+            <PropertyRef Name="RoomBill_Id" />
+            <PropertyRef Name="Oder_Id" />
+            <PropertyRef Name="Title_id" />
+            <PropertyRef Name="Room_id" />
+            <PropertyRef Name="Doc_id" />
+            <PropertyRef Name="StaPay_Id" />
+            <PropertyRef Name="Sta_Id" />
+          </Key>
+          <Property Name="PaymentBill_Id" Type="int" Nullable="false" />
+          <Property Name="RoomBill_Id" Type="int" Nullable="false" />
+          <Property Name="Oder_Id" Type="int" Nullable="false" />
+          <Property Name="Title_id" Type="int" Nullable="false" />
+          <Property Name="Title_name" Type="varchar" MaxLength="10" />
+          <Property Name="User_FristName" Type="varchar" MaxLength="200" />
+          <Property Name="User_LastName" Type="varchar" MaxLength="200" />
+          <Property Name="User_Phone" Type="varchar" MaxLength="10" />
+          <Property Name="Room_id" Type="int" Nullable="false" />
+          <Property Name="Doc_id" Type="int" Nullable="false" />
+          <Property Name="Doc_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Water" Type="int" />
+          <Property Name="Ele" Type="int" />
+          <Property Name="Room_Price" Type="int" />
+          <Property Name="Total_Price" Type="int" />
+          <Property Name="StaPay_Id" Type="int" Nullable="false" />
+          <Property Name="StaPay_Name" Type="varchar" MaxLength="50" />
+          <Property Name="PaymentPic" Type="image" />
+          <Property Name="PaymentBill_date" Type="date" />
+          <Property Name="Room_num" Type="int" />
+          <Property Name="Bill_Date_Out" Type="date" />
+          <Property Name="Sta_Id" Type="int" Nullable="false" />
+          <Property Name="Sta_Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ProjectD.dbo.ViewPayment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewPayment">
+          <Key>
+            <PropertyRef Name="Payment_Id" />
+            <PropertyRef Name="Oder_Id" />
+            <PropertyRef Name="User_id" />
+            <PropertyRef Name="Title_id" />
+            <PropertyRef Name="Room_id" />
+            <PropertyRef Name="Doc_id" />
+            <PropertyRef Name="CateP_id" />
+            <PropertyRef Name="StaPay_Id" />
+            <PropertyRef Name="Sta_Id" />
+          </Key>
+          <Property Name="Payment_Id" Type="int" Nullable="false" />
+          <Property Name="Oder_Id" Type="int" Nullable="false" />
+          <Property Name="Date_In" Type="date" />
+          <Property Name="User_id" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="Title_id" Type="int" Nullable="false" />
+          <Property Name="Title_name" Type="varchar" MaxLength="10" />
+          <Property Name="User_FristName" Type="varchar" MaxLength="200" />
+          <Property Name="User_LastName" Type="varchar" MaxLength="200" />
+          <Property Name="User_Phone" Type="varchar" MaxLength="10" />
+          <Property Name="Room_id" Type="int" Nullable="false" />
+          <Property Name="Doc_id" Type="int" Nullable="false" />
+          <Property Name="Doc_Name" Type="varchar" MaxLength="50" />
+          <Property Name="CateP_id" Type="int" Nullable="false" />
+          <Property Name="RoomPrice" Type="money" />
+          <Property Name="StaPay_Id" Type="int" Nullable="false" />
+          <Property Name="StaPay_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Sta_Id" Type="int" Nullable="false" />
+          <Property Name="Sta_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Payment_Pic" Type="image" />
+          <Property Name="Room_num" Type="int" />
+          <Property Name="Payment_Date" Type="date" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ProjectD.dbo.ViewUser' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewUser">
+          <Key>
+            <PropertyRef Name="User_id" />
+            <PropertyRef Name="Title_id" />
+            <PropertyRef Name="Sta_User_id" />
+          </Key>
+          <Property Name="User_id" Type="int" Nullable="false" />
+          <Property Name="Title_id" Type="int" Nullable="false" />
+          <Property Name="Title_name" Type="varchar" MaxLength="10" />
+          <Property Name="User_FristName" Type="varchar" MaxLength="200" />
+          <Property Name="User_LastName" Type="varchar" MaxLength="200" />
+          <Property Name="User_Phone" Type="varchar" MaxLength="10" />
+          <Property Name="User_Email" Type="varchar" MaxLength="200" />
+          <Property Name="User_Image" Type="image" />
+          <Property Name="Sta_User_id" Type="int" Nullable="false" />
+          <Property Name="Sta_User_type" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_DataUser_StatusUser">
+          <End Role="StatusUser" Type="Self.StatusUser" Multiplicity="0..1" />
+          <End Role="DataUser" Type="Self.DataUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusUser">
+              <PropertyRef Name="Sta_User_id" />
+            </Principal>
+            <Dependent Role="DataUser">
+              <PropertyRef Name="Sta_User_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataUser_Title">
+          <End Role="Title" Type="Self.Title" Multiplicity="0..1" />
+          <End Role="DataUser" Type="Self.DataUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Title">
+              <PropertyRef Name="Title_id" />
+            </Principal>
+            <Dependent Role="DataUser">
+              <PropertyRef Name="Title_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Room">
+          <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="Room_id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Room_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_StatusOrder">
+          <End Role="StatusOrder" Type="Self.StatusOrder" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusOrder">
+              <PropertyRef Name="Sta_Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Sta_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_DataUser">
+          <End Role="DataUser" Type="Self.DataUser" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataUser">
+              <PropertyRef Name="User_id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Oder_Id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="PaymentOrder_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_StatusPayment">
+          <End Role="StatusPayment" Type="Self.StatusPayment" Multiplicity="0..1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusPayment">
+              <PropertyRef Name="StaPay_Id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="StaPay_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentRoomBill_RoomBill">
+          <End Role="RoomBill" Type="Self.RoomBill" Multiplicity="0..1" />
+          <End Role="PaymentRoomBill" Type="Self.PaymentRoomBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomBill">
+              <PropertyRef Name="RoomBill_Id" />
+            </Principal>
+            <Dependent Role="PaymentRoomBill">
+              <PropertyRef Name="PaymentRoomBill_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentRoomBill_StatusPayment">
+          <End Role="StatusPayment" Type="Self.StatusPayment" Multiplicity="0..1" />
+          <End Role="PaymentRoomBill" Type="Self.PaymentRoomBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusPayment">
+              <PropertyRef Name="StaPay_Id" />
+            </Principal>
+            <Dependent Role="PaymentRoomBill">
+              <PropertyRef Name="StaPayBill_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Room_CatePrice">
+          <End Role="CatePrice" Type="Self.CatePrice" Multiplicity="0..1" />
+          <End Role="Room" Type="Self.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatePrice">
+              <PropertyRef Name="CateP_id" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="CateP_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Room_Dormitory">
+          <End Role="Dormitory" Type="Self.Dormitory" Multiplicity="0..1" />
+          <End Role="Room" Type="Self.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dormitory">
+              <PropertyRef Name="Doc_id" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="Doc_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Room_StatusRoom">
+          <End Role="StatusRoom" Type="Self.StatusRoom" Multiplicity="0..1" />
+          <End Role="Room" Type="Self.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusRoom">
+              <PropertyRef Name="StaRoom_Id" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="StaRoom_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoomBill_Order1">
+          <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+          <End Role="RoomBill" Type="Self.RoomBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Oder_Id" />
+            </Principal>
+            <Dependent Role="RoomBill">
+              <PropertyRef Name="Order_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoomBill_StatusOrder">
+          <End Role="StatusOrder" Type="Self.StatusOrder" Multiplicity="0..1" />
+          <End Role="RoomBill" Type="Self.RoomBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusOrder">
+              <PropertyRef Name="Sta_Id" />
+            </Principal>
+            <Dependent Role="RoomBill">
+              <PropertyRef Name="StaBill_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProjectDModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CatePrice" EntityType="Self.CatePrice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DataUser" EntityType="Self.DataUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dormitory" EntityType="Self.Dormitory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentRoomBill" EntityType="Self.PaymentRoomBill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoomBill" EntityType="Self.RoomBill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusOrder" EntityType="Self.StatusOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusPayment" EntityType="Self.StatusPayment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusRoom" EntityType="Self.StatusRoom" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusUser" EntityType="Self.StatusUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Title" EntityType="Self.Title" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ViewOrder" EntityType="Self.ViewOrder" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewOrder].[Oder_Id] AS [Oder_Id], 
+    [ViewOrder].[Title_id] AS [Title_id], 
+    [ViewOrder].[Title_name] AS [Title_name], 
+    [ViewOrder].[User_id] AS [User_id], 
+    [ViewOrder].[User_FristName] AS [User_FristName], 
+    [ViewOrder].[User_LastName] AS [User_LastName], 
+    [ViewOrder].[User_Phone] AS [User_Phone], 
+    [ViewOrder].[Doc_id] AS [Doc_id], 
+    [ViewOrder].[Doc_Name] AS [Doc_Name], 
+    [ViewOrder].[Room_id] AS [Room_id], 
+    [ViewOrder].[CateP_id] AS [CateP_id], 
+    [ViewOrder].[Sta_Id] AS [Sta_Id], 
+    [ViewOrder].[Sta_Name] AS [Sta_Name], 
+    [ViewOrder].[Room_num] AS [Room_num], 
+    [ViewOrder].[Date_In] AS [Date_In], 
+    [ViewOrder].[RoomPrice] AS [RoomPrice]
+    FROM [dbo].[ViewOrder] AS [ViewOrder]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewPayBill" EntityType="Self.ViewPayBill" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewPayBill].[PaymentBill_Id] AS [PaymentBill_Id], 
+    [ViewPayBill].[RoomBill_Id] AS [RoomBill_Id], 
+    [ViewPayBill].[Oder_Id] AS [Oder_Id], 
+    [ViewPayBill].[Title_id] AS [Title_id], 
+    [ViewPayBill].[Title_name] AS [Title_name], 
+    [ViewPayBill].[User_FristName] AS [User_FristName], 
+    [ViewPayBill].[User_LastName] AS [User_LastName], 
+    [ViewPayBill].[User_Phone] AS [User_Phone], 
+    [ViewPayBill].[Room_id] AS [Room_id], 
+    [ViewPayBill].[Doc_id] AS [Doc_id], 
+    [ViewPayBill].[Doc_Name] AS [Doc_Name], 
+    [ViewPayBill].[Water] AS [Water], 
+    [ViewPayBill].[Ele] AS [Ele], 
+    [ViewPayBill].[Room_Price] AS [Room_Price], 
+    [ViewPayBill].[Total_Price] AS [Total_Price], 
+    [ViewPayBill].[StaPay_Id] AS [StaPay_Id], 
+    [ViewPayBill].[StaPay_Name] AS [StaPay_Name], 
+    [ViewPayBill].[PaymentPic] AS [PaymentPic], 
+    [ViewPayBill].[PaymentBill_date] AS [PaymentBill_date], 
+    [ViewPayBill].[Room_num] AS [Room_num], 
+    [ViewPayBill].[Bill_Date_Out] AS [Bill_Date_Out], 
+    [ViewPayBill].[Sta_Id] AS [Sta_Id], 
+    [ViewPayBill].[Sta_Name] AS [Sta_Name]
+    FROM [dbo].[ViewPayBill] AS [ViewPayBill]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewPayment" EntityType="Self.ViewPayment" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewPayment].[Payment_Id] AS [Payment_Id], 
+    [ViewPayment].[Oder_Id] AS [Oder_Id], 
+    [ViewPayment].[Date_In] AS [Date_In], 
+    [ViewPayment].[User_id] AS [User_id], 
+    [ViewPayment].[Title_id] AS [Title_id], 
+    [ViewPayment].[Title_name] AS [Title_name], 
+    [ViewPayment].[User_FristName] AS [User_FristName], 
+    [ViewPayment].[User_LastName] AS [User_LastName], 
+    [ViewPayment].[User_Phone] AS [User_Phone], 
+    [ViewPayment].[Room_id] AS [Room_id], 
+    [ViewPayment].[Doc_id] AS [Doc_id], 
+    [ViewPayment].[Doc_Name] AS [Doc_Name], 
+    [ViewPayment].[CateP_id] AS [CateP_id], 
+    [ViewPayment].[RoomPrice] AS [RoomPrice], 
+    [ViewPayment].[StaPay_Id] AS [StaPay_Id], 
+    [ViewPayment].[StaPay_Name] AS [StaPay_Name], 
+    [ViewPayment].[Sta_Id] AS [Sta_Id], 
+    [ViewPayment].[Sta_Name] AS [Sta_Name], 
+    [ViewPayment].[Payment_Pic] AS [Payment_Pic], 
+    [ViewPayment].[Room_num] AS [Room_num], 
+    [ViewPayment].[Payment_Date] AS [Payment_Date]
+    FROM [dbo].[ViewPayment] AS [ViewPayment]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewUser" EntityType="Self.ViewUser" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewUser].[User_id] AS [User_id], 
+    [ViewUser].[Title_id] AS [Title_id], 
+    [ViewUser].[Title_name] AS [Title_name], 
+    [ViewUser].[User_FristName] AS [User_FristName], 
+    [ViewUser].[User_LastName] AS [User_LastName], 
+    [ViewUser].[User_Phone] AS [User_Phone], 
+    [ViewUser].[User_Email] AS [User_Email], 
+    [ViewUser].[User_Image] AS [User_Image], 
+    [ViewUser].[Sta_User_id] AS [Sta_User_id], 
+    [ViewUser].[Sta_User_type] AS [Sta_User_type]
+    FROM [dbo].[ViewUser] AS [ViewUser]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_DataUser_StatusUser" Association="Self.FK_DataUser_StatusUser">
+            <End Role="StatusUser" EntitySet="StatusUser" />
+            <End Role="DataUser" EntitySet="DataUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataUser_Title" Association="Self.FK_DataUser_Title">
+            <End Role="Title" EntitySet="Title" />
+            <End Role="DataUser" EntitySet="DataUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Room" Association="Self.FK_Order_Room">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_StatusOrder" Association="Self.FK_Order_StatusOrder">
+            <End Role="StatusOrder" EntitySet="StatusOrder" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_DataUser" Association="Self.FK_OrderDetails_DataUser">
+            <End Role="DataUser" EntitySet="DataUser" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_Order" Association="Self.FK_Payment_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_StatusPayment" Association="Self.FK_Payment_StatusPayment">
+            <End Role="StatusPayment" EntitySet="StatusPayment" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentRoomBill_RoomBill" Association="Self.FK_PaymentRoomBill_RoomBill">
+            <End Role="RoomBill" EntitySet="RoomBill" />
+            <End Role="PaymentRoomBill" EntitySet="PaymentRoomBill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentRoomBill_StatusPayment" Association="Self.FK_PaymentRoomBill_StatusPayment">
+            <End Role="StatusPayment" EntitySet="StatusPayment" />
+            <End Role="PaymentRoomBill" EntitySet="PaymentRoomBill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Room_CatePrice" Association="Self.FK_Room_CatePrice">
+            <End Role="CatePrice" EntitySet="CatePrice" />
+            <End Role="Room" EntitySet="Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Room_Dormitory" Association="Self.FK_Room_Dormitory">
+            <End Role="Dormitory" EntitySet="Dormitory" />
+            <End Role="Room" EntitySet="Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Room_StatusRoom" Association="Self.FK_Room_StatusRoom">
+            <End Role="StatusRoom" EntitySet="StatusRoom" />
+            <End Role="Room" EntitySet="Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoomBill_Order1" Association="Self.FK_RoomBill_Order1">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="RoomBill" EntitySet="RoomBill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoomBill_StatusOrder" Association="Self.FK_RoomBill_StatusOrder">
+            <End Role="StatusOrder" EntitySet="StatusOrder" />
+            <End Role="RoomBill" EntitySet="RoomBill" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProjectDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ProjectDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admin" EntityType="ProjectDModel.Admin" />
+          <EntitySet Name="CatePrice" EntityType="ProjectDModel.CatePrice" />
+          <EntitySet Name="DataUser" EntityType="ProjectDModel.DataUser" />
+          <EntitySet Name="Dormitory" EntityType="ProjectDModel.Dormitory" />
+          <EntitySet Name="Order" EntityType="ProjectDModel.Order" />
+          <EntitySet Name="Payment" EntityType="ProjectDModel.Payment" />
+          <EntitySet Name="PaymentRoomBill" EntityType="ProjectDModel.PaymentRoomBill" />
+          <EntitySet Name="Room" EntityType="ProjectDModel.Room" />
+          <EntitySet Name="RoomBill" EntityType="ProjectDModel.RoomBill" />
+          <EntitySet Name="StatusOrder" EntityType="ProjectDModel.StatusOrder" />
+          <EntitySet Name="StatusPayment" EntityType="ProjectDModel.StatusPayment" />
+          <EntitySet Name="StatusRoom" EntityType="ProjectDModel.StatusRoom" />
+          <EntitySet Name="StatusUser" EntityType="ProjectDModel.StatusUser" />
+          <EntitySet Name="sysdiagrams" EntityType="ProjectDModel.sysdiagrams" />
+          <EntitySet Name="Title" EntityType="ProjectDModel.Title" />
+          <EntitySet Name="ViewOrder" EntityType="ProjectDModel.ViewOrder" />
+          <EntitySet Name="ViewPayBill" EntityType="ProjectDModel.ViewPayBill" />
+          <EntitySet Name="ViewPayment" EntityType="ProjectDModel.ViewPayment" />
+          <EntitySet Name="ViewUser" EntityType="ProjectDModel.ViewUser" />
+          <AssociationSet Name="FK_Room_CatePrice" Association="ProjectDModel.FK_Room_CatePrice">
+            <End Role="CatePrice" EntitySet="CatePrice" />
+            <End Role="Room" EntitySet="Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataUser_StatusUser" Association="ProjectDModel.FK_DataUser_StatusUser">
+            <End Role="StatusUser" EntitySet="StatusUser" />
+            <End Role="DataUser" EntitySet="DataUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataUser_Title" Association="ProjectDModel.FK_DataUser_Title">
+            <End Role="Title" EntitySet="Title" />
+            <End Role="DataUser" EntitySet="DataUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_DataUser" Association="ProjectDModel.FK_OrderDetails_DataUser">
+            <End Role="DataUser" EntitySet="DataUser" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Room_Dormitory" Association="ProjectDModel.FK_Room_Dormitory">
+            <End Role="Dormitory" EntitySet="Dormitory" />
+            <End Role="Room" EntitySet="Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Room" Association="ProjectDModel.FK_Order_Room">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_StatusOrder" Association="ProjectDModel.FK_Order_StatusOrder">
+            <End Role="StatusOrder" EntitySet="StatusOrder" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_Order" Association="ProjectDModel.FK_Payment_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoomBill_Order1" Association="ProjectDModel.FK_RoomBill_Order1">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="RoomBill" EntitySet="RoomBill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_StatusPayment" Association="ProjectDModel.FK_Payment_StatusPayment">
+            <End Role="StatusPayment" EntitySet="StatusPayment" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentRoomBill_RoomBill" Association="ProjectDModel.FK_PaymentRoomBill_RoomBill">
+            <End Role="RoomBill" EntitySet="RoomBill" />
+            <End Role="PaymentRoomBill" EntitySet="PaymentRoomBill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentRoomBill_StatusPayment" Association="ProjectDModel.FK_PaymentRoomBill_StatusPayment">
+            <End Role="StatusPayment" EntitySet="StatusPayment" />
+            <End Role="PaymentRoomBill" EntitySet="PaymentRoomBill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Room_StatusRoom" Association="ProjectDModel.FK_Room_StatusRoom">
+            <End Role="StatusRoom" EntitySet="StatusRoom" />
+            <End Role="Room" EntitySet="Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoomBill_StatusOrder" Association="ProjectDModel.FK_RoomBill_StatusOrder">
+            <End Role="StatusOrder" EntitySet="StatusOrder" />
+            <End Role="RoomBill" EntitySet="RoomBill" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Admin_Id" />
+          </Key>
+          <Property Name="Admin_Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Admin_Pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CatePrice">
+          <Key>
+            <PropertyRef Name="CateP_id" />
+          </Key>
+          <Property Name="CateP_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoomPrice" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Room" Relationship="ProjectDModel.FK_Room_CatePrice" FromRole="CatePrice" ToRole="Room" />
+        </EntityType>
+        <EntityType Name="DataUser">
+          <Key>
+            <PropertyRef Name="User_id" />
+          </Key>
+          <Property Name="User_id" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="Title_id" Type="Int32" />
+          <Property Name="User_FristName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="User_LastName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="User_Email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="User_Phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="User_Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Sta_User_id" Type="Int32" />
+          <NavigationProperty Name="StatusUser" Relationship="ProjectDModel.FK_DataUser_StatusUser" FromRole="DataUser" ToRole="StatusUser" />
+          <NavigationProperty Name="Title" Relationship="ProjectDModel.FK_DataUser_Title" FromRole="DataUser" ToRole="Title" />
+          <NavigationProperty Name="Order" Relationship="ProjectDModel.FK_OrderDetails_DataUser" FromRole="DataUser" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Dormitory">
+          <Key>
+            <PropertyRef Name="Doc_id" />
+          </Key>
+          <Property Name="Doc_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Doc_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Room" Relationship="ProjectDModel.FK_Room_Dormitory" FromRole="Dormitory" ToRole="Room" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Oder_Id" />
+          </Key>
+          <Property Name="Oder_Id" Type="Int32" Nullable="false" />
+          <Property Name="User_Id" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="Room_Id" Type="Int32" />
+          <Property Name="Date_In" Type="DateTime" Precision="0" />
+          <Property Name="Sta_Id" Type="Int32" />
+          <NavigationProperty Name="DataUser" Relationship="ProjectDModel.FK_OrderDetails_DataUser" FromRole="Order" ToRole="DataUser" />
+          <NavigationProperty Name="Room" Relationship="ProjectDModel.FK_Order_Room" FromRole="Order" ToRole="Room" />
+          <NavigationProperty Name="StatusOrder" Relationship="ProjectDModel.FK_Order_StatusOrder" FromRole="Order" ToRole="StatusOrder" />
+          <NavigationProperty Name="Payment" Relationship="ProjectDModel.FK_Payment_Order" FromRole="Order" ToRole="Payment" />
+          <NavigationProperty Name="RoomBill" Relationship="ProjectDModel.FK_RoomBill_Order1" FromRole="Order" ToRole="RoomBill" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="Payment_Id" />
+          </Key>
+          <Property Name="Payment_Id" Type="Int32" Nullable="false" />
+          <Property Name="PaymentOrder_Id" Type="Int32" />
+          <Property Name="Payment_Date" Type="DateTime" Precision="0" />
+          <Property Name="Payment_Pic" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="StaPay_ID" Type="Int32" />
+          <NavigationProperty Name="Order" Relationship="ProjectDModel.FK_Payment_Order" FromRole="Payment" ToRole="Order" />
+          <NavigationProperty Name="StatusPayment" Relationship="ProjectDModel.FK_Payment_StatusPayment" FromRole="Payment" ToRole="StatusPayment" />
+        </EntityType>
+        <EntityType Name="PaymentRoomBill">
+          <Key>
+            <PropertyRef Name="PaymentBill_Id" />
+          </Key>
+          <Property Name="PaymentBill_Id" Type="Int32" Nullable="false" />
+          <Property Name="PaymentRoomBill_id" Type="Int32" />
+          <Property Name="PaymentBill_date" Type="DateTime" Precision="0" />
+          <Property Name="PaymentPic" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="StaPayBill_id" Type="Int32" />
+          <NavigationProperty Name="RoomBill" Relationship="ProjectDModel.FK_PaymentRoomBill_RoomBill" FromRole="PaymentRoomBill" ToRole="RoomBill" />
+          <NavigationProperty Name="StatusPayment" Relationship="ProjectDModel.FK_PaymentRoomBill_StatusPayment" FromRole="PaymentRoomBill" ToRole="StatusPayment" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="Room_id" />
+          </Key>
+          <Property Name="Room_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Room_num" Type="Int32" />
+          <Property Name="Doc_id" Type="Int32" />
+          <Property Name="StaRoom_ID" Type="Int32" />
+          <Property Name="CateP_id" Type="Int32" />
+          <NavigationProperty Name="CatePrice" Relationship="ProjectDModel.FK_Room_CatePrice" FromRole="Room" ToRole="CatePrice" />
+          <NavigationProperty Name="Dormitory" Relationship="ProjectDModel.FK_Room_Dormitory" FromRole="Room" ToRole="Dormitory" />
+          <NavigationProperty Name="Order" Relationship="ProjectDModel.FK_Order_Room" FromRole="Room" ToRole="Order" />
+          <NavigationProperty Name="StatusRoom" Relationship="ProjectDModel.FK_Room_StatusRoom" FromRole="Room" ToRole="StatusRoom" />
+        </EntityType>
+        <EntityType Name="RoomBill">
+          <Key>
+            <PropertyRef Name="RoomBill_Id" />
+          </Key>
+          <Property Name="RoomBill_Id" Type="Int32" Nullable="false" />
+          <Property Name="Order_Id" Type="Int32" />
+          <Property Name="Water" Type="Int32" />
+          <Property Name="Ele" Type="Int32" />
+          <Property Name="Room_Price" Type="Int32" />
+          <Property Name="Total_Price" Type="Int32" />
+          <Property Name="Bill_Date_Out" Type="DateTime" Precision="0" />
+          <Property Name="StaBill_id" Type="Int32" />
+          <NavigationProperty Name="Order" Relationship="ProjectDModel.FK_RoomBill_Order1" FromRole="RoomBill" ToRole="Order" />
+          <NavigationProperty Name="PaymentRoomBill" Relationship="ProjectDModel.FK_PaymentRoomBill_RoomBill" FromRole="RoomBill" ToRole="PaymentRoomBill" />
+          <NavigationProperty Name="StatusOrder" Relationship="ProjectDModel.FK_RoomBill_StatusOrder" FromRole="RoomBill" ToRole="StatusOrder" />
+        </EntityType>
+        <EntityType Name="StatusOrder">
+          <Key>
+            <PropertyRef Name="Sta_Id" />
+          </Key>
+          <Property Name="Sta_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sta_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Order" Relationship="ProjectDModel.FK_Order_StatusOrder" FromRole="StatusOrder" ToRole="Order" />
+          <NavigationProperty Name="RoomBill" Relationship="ProjectDModel.FK_RoomBill_StatusOrder" FromRole="StatusOrder" ToRole="RoomBill" />
+        </EntityType>
+        <EntityType Name="StatusPayment">
+          <Key>
+            <PropertyRef Name="StaPay_Id" />
+          </Key>
+          <Property Name="StaPay_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StaPay_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Payment" Relationship="ProjectDModel.FK_Payment_StatusPayment" FromRole="StatusPayment" ToRole="Payment" />
+          <NavigationProperty Name="PaymentRoomBill" Relationship="ProjectDModel.FK_PaymentRoomBill_StatusPayment" FromRole="StatusPayment" ToRole="PaymentRoomBill" />
+        </EntityType>
+        <EntityType Name="StatusRoom">
+          <Key>
+            <PropertyRef Name="StaRoom_Id" />
+          </Key>
+          <Property Name="StaRoom_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StaRoom_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Room" Relationship="ProjectDModel.FK_Room_StatusRoom" FromRole="StatusRoom" ToRole="Room" />
+        </EntityType>
+        <EntityType Name="StatusUser">
+          <Key>
+            <PropertyRef Name="Sta_User_id" />
+          </Key>
+          <Property Name="Sta_User_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sta_User_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DataUser" Relationship="ProjectDModel.FK_DataUser_StatusUser" FromRole="StatusUser" ToRole="DataUser" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Title">
+          <Key>
+            <PropertyRef Name="Title_id" />
+          </Key>
+          <Property Name="Title_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title_name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DataUser" Relationship="ProjectDModel.FK_DataUser_Title" FromRole="Title" ToRole="DataUser" />
+        </EntityType>
+        <EntityType Name="ViewOrder">
+          <Key>
+            <PropertyRef Name="Oder_Id" />
+            <PropertyRef Name="Title_id" />
+            <PropertyRef Name="User_id" />
+            <PropertyRef Name="Doc_id" />
+            <PropertyRef Name="Room_id" />
+            <PropertyRef Name="CateP_id" />
+            <PropertyRef Name="Sta_Id" />
+          </Key>
+          <Property Name="Oder_Id" Type="Int32" Nullable="false" />
+          <Property Name="Title_id" Type="Int32" Nullable="false" />
+          <Property Name="Title_name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="User_id" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="User_FristName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="User_LastName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="User_Phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Doc_id" Type="Int32" Nullable="false" />
+          <Property Name="Doc_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Room_id" Type="Int32" Nullable="false" />
+          <Property Name="CateP_id" Type="Int32" Nullable="false" />
+          <Property Name="Sta_Id" Type="Int32" Nullable="false" />
+          <Property Name="Sta_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Room_num" Type="Int32" />
+          <Property Name="Date_In" Type="DateTime" Precision="0" />
+          <Property Name="RoomPrice" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="ViewPayBill">
+          <Key>
+            <PropertyRef Name="PaymentBill_Id" />
+            <PropertyRef Name="RoomBill_Id" />
+            <PropertyRef Name="Oder_Id" />
+            <PropertyRef Name="Title_id" />
+            <PropertyRef Name="Room_id" />
+            <PropertyRef Name="Doc_id" />
+            <PropertyRef Name="StaPay_Id" />
+            <PropertyRef Name="Sta_Id" />
+          </Key>
+          <Property Name="PaymentBill_Id" Type="Int32" Nullable="false" />
+          <Property Name="RoomBill_Id" Type="Int32" Nullable="false" />
+          <Property Name="Oder_Id" Type="Int32" Nullable="false" />
+          <Property Name="Title_id" Type="Int32" Nullable="false" />
+          <Property Name="Title_name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="User_FristName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="User_LastName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="User_Phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Room_id" Type="Int32" Nullable="false" />
+          <Property Name="Doc_id" Type="Int32" Nullable="false" />
+          <Property Name="Doc_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Water" Type="Int32" />
+          <Property Name="Ele" Type="Int32" />
+          <Property Name="Room_Price" Type="Int32" />
+          <Property Name="Total_Price" Type="Int32" />
+          <Property Name="StaPay_Id" Type="Int32" Nullable="false" />
+          <Property Name="StaPay_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PaymentPic" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="PaymentBill_date" Type="DateTime" Precision="0" />
+          <Property Name="Room_num" Type="Int32" />
+          <Property Name="Bill_Date_Out" Type="DateTime" Precision="0" />
+          <Property Name="Sta_Id" Type="Int32" Nullable="false" />
+          <Property Name="Sta_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ViewPayment">
+          <Key>
+            <PropertyRef Name="Payment_Id" />
+            <PropertyRef Name="Oder_Id" />
+            <PropertyRef Name="User_id" />
+            <PropertyRef Name="Title_id" />
+            <PropertyRef Name="Room_id" />
+            <PropertyRef Name="Doc_id" />
+            <PropertyRef Name="CateP_id" />
+            <PropertyRef Name="StaPay_Id" />
+            <PropertyRef Name="Sta_Id" />
+          </Key>
+          <Property Name="Payment_Id" Type="Int32" Nullable="false" />
+          <Property Name="Oder_Id" Type="Int32" Nullable="false" />
+          <Property Name="Date_In" Type="DateTime" Precision="0" />
+          <Property Name="User_id" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="Title_id" Type="Int32" Nullable="false" />
+          <Property Name="Title_name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="User_FristName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="User_LastName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="User_Phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Room_id" Type="Int32" Nullable="false" />
+          <Property Name="Doc_id" Type="Int32" Nullable="false" />
+          <Property Name="Doc_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CateP_id" Type="Int32" Nullable="false" />
+          <Property Name="RoomPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="StaPay_Id" Type="Int32" Nullable="false" />
+          <Property Name="StaPay_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sta_Id" Type="Int32" Nullable="false" />
+          <Property Name="Sta_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Payment_Pic" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Room_num" Type="Int32" />
+          <Property Name="Payment_Date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="ViewUser">
+          <Key>
+            <PropertyRef Name="User_id" />
+            <PropertyRef Name="Title_id" />
+            <PropertyRef Name="Sta_User_id" />
+          </Key>
+          <Property Name="User_id" Type="Int32" Nullable="false" />
+          <Property Name="Title_id" Type="Int32" Nullable="false" />
+          <Property Name="Title_name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="User_FristName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="User_LastName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="User_Phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="User_Email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="User_Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Sta_User_id" Type="Int32" Nullable="false" />
+          <Property Name="Sta_User_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Room_CatePrice">
+          <End Type="ProjectDModel.CatePrice" Role="CatePrice" Multiplicity="0..1" />
+          <End Type="ProjectDModel.Room" Role="Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatePrice">
+              <PropertyRef Name="CateP_id" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="CateP_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataUser_StatusUser">
+          <End Type="ProjectDModel.StatusUser" Role="StatusUser" Multiplicity="0..1" />
+          <End Type="ProjectDModel.DataUser" Role="DataUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusUser">
+              <PropertyRef Name="Sta_User_id" />
+            </Principal>
+            <Dependent Role="DataUser">
+              <PropertyRef Name="Sta_User_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataUser_Title">
+          <End Type="ProjectDModel.Title" Role="Title" Multiplicity="0..1" />
+          <End Type="ProjectDModel.DataUser" Role="DataUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Title">
+              <PropertyRef Name="Title_id" />
+            </Principal>
+            <Dependent Role="DataUser">
+              <PropertyRef Name="Title_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_DataUser">
+          <End Type="ProjectDModel.DataUser" Role="DataUser" Multiplicity="0..1" />
+          <End Type="ProjectDModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataUser">
+              <PropertyRef Name="User_id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Room_Dormitory">
+          <End Type="ProjectDModel.Dormitory" Role="Dormitory" Multiplicity="0..1" />
+          <End Type="ProjectDModel.Room" Role="Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dormitory">
+              <PropertyRef Name="Doc_id" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="Doc_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Room">
+          <End Type="ProjectDModel.Room" Role="Room" Multiplicity="0..1" />
+          <End Type="ProjectDModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="Room_id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Room_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_StatusOrder">
+          <End Type="ProjectDModel.StatusOrder" Role="StatusOrder" Multiplicity="0..1" />
+          <End Type="ProjectDModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusOrder">
+              <PropertyRef Name="Sta_Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Sta_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_Order">
+          <End Type="ProjectDModel.Order" Role="Order" Multiplicity="0..1" />
+          <End Type="ProjectDModel.Payment" Role="Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Oder_Id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="PaymentOrder_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoomBill_Order1">
+          <End Type="ProjectDModel.Order" Role="Order" Multiplicity="0..1" />
+          <End Type="ProjectDModel.RoomBill" Role="RoomBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Oder_Id" />
+            </Principal>
+            <Dependent Role="RoomBill">
+              <PropertyRef Name="Order_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_StatusPayment">
+          <End Type="ProjectDModel.StatusPayment" Role="StatusPayment" Multiplicity="0..1" />
+          <End Type="ProjectDModel.Payment" Role="Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusPayment">
+              <PropertyRef Name="StaPay_Id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="StaPay_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentRoomBill_RoomBill">
+          <End Type="ProjectDModel.RoomBill" Role="RoomBill" Multiplicity="0..1" />
+          <End Type="ProjectDModel.PaymentRoomBill" Role="PaymentRoomBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomBill">
+              <PropertyRef Name="RoomBill_Id" />
+            </Principal>
+            <Dependent Role="PaymentRoomBill">
+              <PropertyRef Name="PaymentRoomBill_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentRoomBill_StatusPayment">
+          <End Type="ProjectDModel.StatusPayment" Role="StatusPayment" Multiplicity="0..1" />
+          <End Type="ProjectDModel.PaymentRoomBill" Role="PaymentRoomBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusPayment">
+              <PropertyRef Name="StaPay_Id" />
+            </Principal>
+            <Dependent Role="PaymentRoomBill">
+              <PropertyRef Name="StaPayBill_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Room_StatusRoom">
+          <End Type="ProjectDModel.StatusRoom" Role="StatusRoom" Multiplicity="0..1" />
+          <End Type="ProjectDModel.Room" Role="Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusRoom">
+              <PropertyRef Name="StaRoom_Id" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="StaRoom_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoomBill_StatusOrder">
+          <End Type="ProjectDModel.StatusOrder" Role="StatusOrder" Multiplicity="0..1" />
+          <End Type="ProjectDModel.RoomBill" Role="RoomBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusOrder">
+              <PropertyRef Name="Sta_Id" />
+            </Principal>
+            <Dependent Role="RoomBill">
+              <PropertyRef Name="StaBill_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProjectDModelStoreContainer" CdmEntityContainer="ProjectDEntities">
+          <EntitySetMapping Name="Admin">
+            <EntityTypeMapping TypeName="ProjectDModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="Admin_Pass" ColumnName="Admin_Pass" />
+                <ScalarProperty Name="Admin_Id" ColumnName="Admin_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CatePrice">
+            <EntityTypeMapping TypeName="ProjectDModel.CatePrice">
+              <MappingFragment StoreEntitySet="CatePrice">
+                <ScalarProperty Name="RoomPrice" ColumnName="RoomPrice" />
+                <ScalarProperty Name="CateP_id" ColumnName="CateP_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DataUser">
+            <EntityTypeMapping TypeName="ProjectDModel.DataUser">
+              <MappingFragment StoreEntitySet="DataUser">
+                <ScalarProperty Name="Sta_User_id" ColumnName="Sta_User_id" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="User_Image" ColumnName="User_Image" />
+                <ScalarProperty Name="User_Phone" ColumnName="User_Phone" />
+                <ScalarProperty Name="User_Email" ColumnName="User_Email" />
+                <ScalarProperty Name="User_LastName" ColumnName="User_LastName" />
+                <ScalarProperty Name="User_FristName" ColumnName="User_FristName" />
+                <ScalarProperty Name="Title_id" ColumnName="Title_id" />
+                <ScalarProperty Name="User_id" ColumnName="User_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dormitory">
+            <EntityTypeMapping TypeName="ProjectDModel.Dormitory">
+              <MappingFragment StoreEntitySet="Dormitory">
+                <ScalarProperty Name="Doc_Name" ColumnName="Doc_Name" />
+                <ScalarProperty Name="Doc_id" ColumnName="Doc_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="ProjectDModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="Sta_Id" ColumnName="Sta_Id" />
+                <ScalarProperty Name="Date_In" ColumnName="Date_In" />
+                <ScalarProperty Name="Room_Id" ColumnName="Room_Id" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="Oder_Id" ColumnName="Oder_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payment">
+            <EntityTypeMapping TypeName="ProjectDModel.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="StaPay_ID" ColumnName="StaPay_ID" />
+                <ScalarProperty Name="Payment_Pic" ColumnName="Payment_Pic" />
+                <ScalarProperty Name="Payment_Date" ColumnName="Payment_Date" />
+                <ScalarProperty Name="PaymentOrder_Id" ColumnName="PaymentOrder_Id" />
+                <ScalarProperty Name="Payment_Id" ColumnName="Payment_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentRoomBill">
+            <EntityTypeMapping TypeName="ProjectDModel.PaymentRoomBill">
+              <MappingFragment StoreEntitySet="PaymentRoomBill">
+                <ScalarProperty Name="StaPayBill_id" ColumnName="StaPayBill_id" />
+                <ScalarProperty Name="PaymentPic" ColumnName="PaymentPic" />
+                <ScalarProperty Name="PaymentBill_date" ColumnName="PaymentBill_date" />
+                <ScalarProperty Name="PaymentRoomBill_id" ColumnName="PaymentRoomBill_id" />
+                <ScalarProperty Name="PaymentBill_Id" ColumnName="PaymentBill_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Room">
+            <EntityTypeMapping TypeName="ProjectDModel.Room">
+              <MappingFragment StoreEntitySet="Room">
+                <ScalarProperty Name="CateP_id" ColumnName="CateP_id" />
+                <ScalarProperty Name="StaRoom_ID" ColumnName="StaRoom_ID" />
+                <ScalarProperty Name="Doc_id" ColumnName="Doc_id" />
+                <ScalarProperty Name="Room_num" ColumnName="Room_num" />
+                <ScalarProperty Name="Room_id" ColumnName="Room_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoomBill">
+            <EntityTypeMapping TypeName="ProjectDModel.RoomBill">
+              <MappingFragment StoreEntitySet="RoomBill">
+                <ScalarProperty Name="StaBill_id" ColumnName="StaBill_id" />
+                <ScalarProperty Name="Bill_Date_Out" ColumnName="Bill_Date_Out" />
+                <ScalarProperty Name="Total_Price" ColumnName="Total_Price" />
+                <ScalarProperty Name="Room_Price" ColumnName="Room_Price" />
+                <ScalarProperty Name="Ele" ColumnName="Ele" />
+                <ScalarProperty Name="Water" ColumnName="Water" />
+                <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
+                <ScalarProperty Name="RoomBill_Id" ColumnName="RoomBill_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusOrder">
+            <EntityTypeMapping TypeName="ProjectDModel.StatusOrder">
+              <MappingFragment StoreEntitySet="StatusOrder">
+                <ScalarProperty Name="Sta_Name" ColumnName="Sta_Name" />
+                <ScalarProperty Name="Sta_Id" ColumnName="Sta_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusPayment">
+            <EntityTypeMapping TypeName="ProjectDModel.StatusPayment">
+              <MappingFragment StoreEntitySet="StatusPayment">
+                <ScalarProperty Name="StaPay_Name" ColumnName="StaPay_Name" />
+                <ScalarProperty Name="StaPay_Id" ColumnName="StaPay_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusRoom">
+            <EntityTypeMapping TypeName="ProjectDModel.StatusRoom">
+              <MappingFragment StoreEntitySet="StatusRoom">
+                <ScalarProperty Name="StaRoom_Type" ColumnName="StaRoom_Type" />
+                <ScalarProperty Name="StaRoom_Id" ColumnName="StaRoom_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusUser">
+            <EntityTypeMapping TypeName="ProjectDModel.StatusUser">
+              <MappingFragment StoreEntitySet="StatusUser">
+                <ScalarProperty Name="Sta_User_type" ColumnName="Sta_User_type" />
+                <ScalarProperty Name="Sta_User_id" ColumnName="Sta_User_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ProjectDModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Title">
+            <EntityTypeMapping TypeName="ProjectDModel.Title">
+              <MappingFragment StoreEntitySet="Title">
+                <ScalarProperty Name="Title_name" ColumnName="Title_name" />
+                <ScalarProperty Name="Title_id" ColumnName="Title_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewOrder">
+            <EntityTypeMapping TypeName="ProjectDModel.ViewOrder">
+              <MappingFragment StoreEntitySet="ViewOrder">
+                <ScalarProperty Name="RoomPrice" ColumnName="RoomPrice" />
+                <ScalarProperty Name="Date_In" ColumnName="Date_In" />
+                <ScalarProperty Name="Room_num" ColumnName="Room_num" />
+                <ScalarProperty Name="Sta_Name" ColumnName="Sta_Name" />
+                <ScalarProperty Name="Sta_Id" ColumnName="Sta_Id" />
+                <ScalarProperty Name="CateP_id" ColumnName="CateP_id" />
+                <ScalarProperty Name="Room_id" ColumnName="Room_id" />
+                <ScalarProperty Name="Doc_Name" ColumnName="Doc_Name" />
+                <ScalarProperty Name="Doc_id" ColumnName="Doc_id" />
+                <ScalarProperty Name="User_Phone" ColumnName="User_Phone" />
+                <ScalarProperty Name="User_LastName" ColumnName="User_LastName" />
+                <ScalarProperty Name="User_FristName" ColumnName="User_FristName" />
+                <ScalarProperty Name="User_id" ColumnName="User_id" />
+                <ScalarProperty Name="Title_name" ColumnName="Title_name" />
+                <ScalarProperty Name="Title_id" ColumnName="Title_id" />
+                <ScalarProperty Name="Oder_Id" ColumnName="Oder_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewPayBill">
+            <EntityTypeMapping TypeName="ProjectDModel.ViewPayBill">
+              <MappingFragment StoreEntitySet="ViewPayBill">
+                <ScalarProperty Name="Sta_Name" ColumnName="Sta_Name" />
+                <ScalarProperty Name="Sta_Id" ColumnName="Sta_Id" />
+                <ScalarProperty Name="Bill_Date_Out" ColumnName="Bill_Date_Out" />
+                <ScalarProperty Name="Room_num" ColumnName="Room_num" />
+                <ScalarProperty Name="PaymentBill_date" ColumnName="PaymentBill_date" />
+                <ScalarProperty Name="PaymentPic" ColumnName="PaymentPic" />
+                <ScalarProperty Name="StaPay_Name" ColumnName="StaPay_Name" />
+                <ScalarProperty Name="StaPay_Id" ColumnName="StaPay_Id" />
+                <ScalarProperty Name="Total_Price" ColumnName="Total_Price" />
+                <ScalarProperty Name="Room_Price" ColumnName="Room_Price" />
+                <ScalarProperty Name="Ele" ColumnName="Ele" />
+                <ScalarProperty Name="Water" ColumnName="Water" />
+                <ScalarProperty Name="Doc_Name" ColumnName="Doc_Name" />
+                <ScalarProperty Name="Doc_id" ColumnName="Doc_id" />
+                <ScalarProperty Name="Room_id" ColumnName="Room_id" />
+                <ScalarProperty Name="User_Phone" ColumnName="User_Phone" />
+                <ScalarProperty Name="User_LastName" ColumnName="User_LastName" />
+                <ScalarProperty Name="User_FristName" ColumnName="User_FristName" />
+                <ScalarProperty Name="Title_name" ColumnName="Title_name" />
+                <ScalarProperty Name="Title_id" ColumnName="Title_id" />
+                <ScalarProperty Name="Oder_Id" ColumnName="Oder_Id" />
+                <ScalarProperty Name="RoomBill_Id" ColumnName="RoomBill_Id" />
+                <ScalarProperty Name="PaymentBill_Id" ColumnName="PaymentBill_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewPayment">
+            <EntityTypeMapping TypeName="ProjectDModel.ViewPayment">
+              <MappingFragment StoreEntitySet="ViewPayment">
+                <ScalarProperty Name="Payment_Date" ColumnName="Payment_Date" />
+                <ScalarProperty Name="Room_num" ColumnName="Room_num" />
+                <ScalarProperty Name="Payment_Pic" ColumnName="Payment_Pic" />
+                <ScalarProperty Name="Sta_Name" ColumnName="Sta_Name" />
+                <ScalarProperty Name="Sta_Id" ColumnName="Sta_Id" />
+                <ScalarProperty Name="StaPay_Name" ColumnName="StaPay_Name" />
+                <ScalarProperty Name="StaPay_Id" ColumnName="StaPay_Id" />
+                <ScalarProperty Name="RoomPrice" ColumnName="RoomPrice" />
+                <ScalarProperty Name="CateP_id" ColumnName="CateP_id" />
+                <ScalarProperty Name="Doc_Name" ColumnName="Doc_Name" />
+                <ScalarProperty Name="Doc_id" ColumnName="Doc_id" />
+                <ScalarProperty Name="Room_id" ColumnName="Room_id" />
+                <ScalarProperty Name="User_Phone" ColumnName="User_Phone" />
+                <ScalarProperty Name="User_LastName" ColumnName="User_LastName" />
+                <ScalarProperty Name="User_FristName" ColumnName="User_FristName" />
+                <ScalarProperty Name="Title_name" ColumnName="Title_name" />
+                <ScalarProperty Name="Title_id" ColumnName="Title_id" />
+                <ScalarProperty Name="User_id" ColumnName="User_id" />
+                <ScalarProperty Name="Date_In" ColumnName="Date_In" />
+                <ScalarProperty Name="Oder_Id" ColumnName="Oder_Id" />
+                <ScalarProperty Name="Payment_Id" ColumnName="Payment_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewUser">
+            <EntityTypeMapping TypeName="ProjectDModel.ViewUser">
+              <MappingFragment StoreEntitySet="ViewUser">
+                <ScalarProperty Name="Sta_User_type" ColumnName="Sta_User_type" />
+                <ScalarProperty Name="Sta_User_id" ColumnName="Sta_User_id" />
+                <ScalarProperty Name="User_Image" ColumnName="User_Image" />
+                <ScalarProperty Name="User_Email" ColumnName="User_Email" />
+                <ScalarProperty Name="User_Phone" ColumnName="User_Phone" />
+                <ScalarProperty Name="User_LastName" ColumnName="User_LastName" />
+                <ScalarProperty Name="User_FristName" ColumnName="User_FristName" />
+                <ScalarProperty Name="Title_name" ColumnName="Title_name" />
+                <ScalarProperty Name="Title_id" ColumnName="Title_id" />
+                <ScalarProperty Name="User_id" ColumnName="User_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

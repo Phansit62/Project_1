@@ -1,0 +1,51 @@
+﻿@model ProjectEND.Models.Payment
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<h2>Detail</h2>
+
+<div>
+    <h4>Payment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Payment_Id) :  @Html.DisplayFor(model => model.Payment_Id)
+        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentOrder_Id) :  @Html.DisplayFor(model => model.PaymentOrder_Id)
+        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.DataUser.User_FristName)-@Html.DisplayNameFor(model => model.Order.DataUser.User_LastName) :
+            @Html.DisplayFor(model => model.Order.DataUser.Title.Title_name) @Html.DisplayFor(model => model.Order.DataUser.User_FristName) @Html.DisplayFor(model => model.Order.DataUser.User_LastName)
+        </dt>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Payment_Date) :  @Html.DisplayFor(model => model.Payment_Date)
+        </dt>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Payment_Pic)
+
+        </dt>
+
+        <dd>
+            @if (Model.Payment_Pic != null)
+            {
+                <img src="data:image/png;base64,@Convert.ToBase64String(Model.Payment_Pic)"
+                     style="border-radius: 20px">
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.Date_In) : @Html.DisplayFor(model => model.Order.Date_In)
+        </dt>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StatusPayment.StaPay_Name) :  @Html.DisplayFor(model => model.StatusPayment.StaPay_Name)
+        </dt>
+        <dt><a class="btn btn-danger" href="@Url.Action("Index","PaymentRoom")">กลับ</a></dt>
+    </dl>
+</div>

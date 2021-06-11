@@ -1,0 +1,110 @@
+﻿@model IEnumerable<ProjectEND.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+<link href="~/css/jquery.dataTables.css" rel="stylesheet" />
+@if (TempData["ChkDelete"] != null)
+{
+    if ((bool)TempData["ChkDelete"])
+    {
+        <div class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <h4 class="alert-heading">ERORR!</h4>
+            <p class="mb-0">ไม่สามารถลบได้เนื่องจากมีการใช้งานข้อมูลนี้อยุ่</p>
+        </div>
+    }
+}
+@if (TempData["Com"] != null)
+{
+    if ((bool)TempData["Com"])
+    {
+        <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <h4 class="alert-heading">Success!</h4>
+            <p class="mb-0">ลบข้อมูลสำเร็จ</p>
+        </div>
+    }
+}
+<h2>รายการจองห้องพัก</h2>
+<table class="display" id="MyTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Oder_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataUser.User_FristName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataUser.User_LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date_In)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StatusOrder.Sta_Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Oder_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataUser.User_FristName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataUser.User_LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Room_Id)
+                </td>
+                <td>
+                    @item.Date_In.Value.ToShortDateString()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StatusOrder.Sta_Name)
+                </td>
+                <td>
+                    <a class="btn btn-danger" onclick="Delete('@item.Oder_Id')">ลบ</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+@section Scripts{
+    <script src="~/Scripts/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#MyTable').DataTable();
+        });
+    </script>
+    <script>
+    function Delete(id) {
+        Swal.fire({
+            title: 'ต้องการลบใช่หรือไม่?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'ยืนยัน',
+            cancelButtonText: 'ยกเลิก'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '@Url.Action("Delete","Order")/' + id
+            }
+        })
+    }
+    </script>
+
+}

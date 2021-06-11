@@ -1,0 +1,88 @@
+﻿@model IEnumerable<ProjectEND.Models.Dormitory>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+<link href="~/css/jquery.dataTables.css" rel="stylesheet" />
+<h4>จัดการหอพัก</h4>
+@if (TempData["ChkDelete"] != null)
+{
+    if ((bool)TempData["ChkDelete"])
+    {
+        <div class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <h4 class="alert-heading">ERORR!</h4>
+            <p class="mb-0">ไม่สามารถลบได้เนื่องจากมีการใช้งานข้อมูลนี้อยุ่</p>
+        </div>
+
+    }
+}
+@if (TempData["Com"] != null)
+{
+    if ((bool)TempData["Com"])
+    {
+        <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <h4 class="alert-heading">Success!</h4>
+            <p class="mb-0">ลบข้อมูลสำเร็จ</p>
+        </div>
+    }
+}
+<a style="margin-bottom:10px" class="btn btn-success" href="@Url.Action("Create","Doc")">เพิ่ม</a>
+<table class="display" id="MyTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Doc_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Doc_Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Doc_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Doc_Name)
+                </td>
+                <td>
+                    <a class="btn btn-warning" href="@Url.Action("Edit","Doc",new { id=item.Doc_id})">แก้ไข</a>
+                    <a class="btn btn-danger" onclick="Delete('@item.Doc_id')">ลบ</a>
+                </td>
+            </tr>
+        </tbody>
+    }
+
+</table>
+@section Scripts{
+    <script src="~/Scripts/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#MyTable').DataTable();
+        });
+    </script>
+}
+<script>
+    function Delete(id) {
+        Swal.fire({
+            title: 'ต้องการลบใช่หรือไม่?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'ยืนยัน',
+            cancelButtonText: 'ยกเลิก'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                 window.location.href = '@Url.Action("Delete","Doc")/' + id
+            }
+        })
+    }
+</script>

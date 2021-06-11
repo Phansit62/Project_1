@@ -1,0 +1,186 @@
+﻿@{
+    var user = Session["USER"] as ProjectEND.Models.DataUser;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @*@Styles.Render("~/Content/css")*@
+    @*@Scripts.Render("~/bundles/modernizr")*@
+
+
+    <link href="https://fonts.googleapis.com/css?family=Mukta+Mahee:200,300,400|Playfair+Display:400,700" rel="stylesheet">
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/bootstrap.css">
+    <link rel="stylesheet" href="~/css/animate.css">
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/css/aos.css">
+    <link rel="stylesheet" href="~/fonts/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/fonts/fontawesome/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
+    <!-- Theme Style -->
+    <link rel="stylesheet" href="~/css/style.css">
+</head>
+<body>
+    <header class="site-header fixed-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-4 site-logo" data-aos="fade"><a href=""><em>พัสกรรูม</em></a></div>
+                <div class="col-8">
+
+                    <div class="site-menu-toggle js-site-menu-toggle" data-aos="fade">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <!-- END menu-toggle -->
+                    <div class="site-navbar js-site-navbar">
+                        <nav role="navigation">
+                            <div class="container">
+                                <div class="row full-height align-items-center">
+                                    <div class="col-md-6">
+                                        <ul class="list-unstyled menu">
+                                            <li class="active"><a href="">หน้าแรก</a></li>
+                                            <li><a href="@Url.Action("Index","Room")">ห้องพัก</a></li>
+                                            <li><a href="">เกี่ยวกับเรา</a></li>
+                                            <li><a href="">ติดต่อเรา</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6 extra-info">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-5">
+                                                <h3>Contact Info</h3>
+                                                <p>
+                                                    ถนน แสงชูโต ซอย 25 เทศบาลเมืองกาญจนบุรี 71000
+                                                </p>
+                                                <p>087 514 1911</p>
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h3>Connect With Us</h3>
+                                                <ul class="list-unstyled">
+                                                    <li><a href="#">Twitter</a></li>
+                                                    <li><a href="#">Facebook</a></li>
+                                                    <li><a href="#">Instagram</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- END head -->
+
+    <section class="site-hero overlay" style="background-image: url('../ProjectRoom11/img/55.jpg')">
+        <div class="container">
+            <div class="row site-hero-inner justify-content-center align-items-center">
+                <div class="col-md-10 text-center">
+                    <h1 class="heading" data-aos="fade-up">ยินดีต้อนรับ <em>พัสกรรูม</em> ห้องพักรายเดือน</h1>
+                    @if (user != null)
+                    {
+                        <p data-aos="fade-up" data-aos-delay="100">
+                            <a href="@Url.Action("Logout","Account")" class="btn uppercase btn-primary mr-md-2 mr-0 mb-3 d-sm-inline d-block">ออกสู่ระบบ</a>
+                            <a href="@Url.Action("Index","Room")" class="btn uppercase btn-outline-light d-sm-inline d-block">ห้องพัก</a>
+                        </p>
+                        <div data-aos="fade-up">
+                            <div class="btn-group">
+                                <button type="button" onclick="location.href='@Url.Action("ProfileDe","Account" ,new { id=user.User_id})'" class="btn btn-primary">ข้อมูลผู้ใช้</button>
+                                <button  type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a style="text-align:center" href='@Url.Action("ProfileEdit","Account" ,new { id=user.User_id})' class="dropdown-item">แก้ไขข้อมูล</a>
+                                    <a style="text-align:center" class="dropdown-item" href="@Url.Action("Billforuser","RoomBill")">ตรวจสอบบิล</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <p data-aos="fade-up" data-aos-delay="100">
+                            <a href="@Url.Action("Login","Account")" class="btn uppercase btn-primary mr-md-2 mr-0 mb-3 d-sm-inline d-block">เข้าสู่ระบบ</a>
+                            <a href="@Url.Action("Index","Room")" class="btn uppercase btn-outline-light d-sm-inline d-block">ห้องพัก</a>
+                        </p>
+                    }
+                </div>
+            </div>
+            <!-- <a href="#" class="scroll-down">Scroll Down</a> -->
+        </div>
+    </section>
+    <!-- END section -->
+    <!-- END section -->
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <div class="container">
+                <div class="row mb-4">
+                    <div class="col-md-3 mb-5">
+                        <ul class="list-unstyled link">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Terms &amp; Conditions</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Help</a></li>
+                            <li><a href="#">Rooms</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 mb-5 pr-md-5 contact-info">
+                        <p><span class="d-block">Address:</span> <span>ถนน แสงชูโต ซอย 25 เทศบาลเมืองกาญจนบุรี 71000</span></p>
+                        <p><span class="d-block">Phone:</span> <span> 087 514 1911</span></p>
+                    </div>
+                    <div class="col-md-3 mb-5">
+                        <p>Sign up for our newsletter</p>
+                        <form action="#" class="footer-newsletter">
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Your email...">
+                                <button type="submit" class="btn"><span class="fa fa-paper-plane"></span></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row bordertop pt-5">
+                    <p class="col-md-6 text-left">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+
+                    <p class="col-md-6 text-right social">
+                        <a href="#"><span class="fa fa-tripadvisor"></span></a>
+                        <a href="#"><span class="fa fa-facebook"></span></a>
+                        <a href="#"><span class="fa fa-twitter"></span></a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="~/js/jquery-3.2.1.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+    <!-- <script src="js/jquery.waypoints.min.js"></script> -->
+    <script src="~/js/aos.js"></script>
+    <script src="~/js/main.js"></script>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script>
+        $('.dropdown-toggle').dropdown()
+    </script>
+</body>
+</html>

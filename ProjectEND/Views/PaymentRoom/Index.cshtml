@@ -1,0 +1,115 @@
+﻿@model IEnumerable<ProjectEND.Models.Payment>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<h2>รายการชำระเงิน</h2>
+<link href="~/css/jquery.dataTables.css" rel="stylesheet" />
+@if (TempData["ChkDelete"] != null)
+{
+    if ((bool)TempData["ChkDelete"])
+    {
+        <div class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <h4 class="alert-heading">ERORR!</h4>
+            <p class="mb-0">ไม่สามารถลบได้เนื่องจากมีการใช้งานข้อมูลนี้อยุ่</p>
+        </div>
+    }
+}
+@if (TempData["Com"] != null)
+{
+    if ((bool)TempData["Com"])
+    {
+        <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <h4 class="alert-heading">Success!</h4>
+            <p class="mb-0">ลบข้อมูลสำเร็จ</p>
+        </div>
+    }
+}
+<table class="display" id="MyTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Payment_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Payment_Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Payment_Pic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentOrder_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StatusPayment.StaPay_Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Payment_Id)
+                </td>
+                <td>
+                    @item.Payment_Date.Value.ToShortDateString()
+                </td>
+                <td>
+                    @if (item.Payment_Pic != null)
+                    {
+                        <img src="data:image/png;base64,@Convert.ToBase64String(item.Payment_Pic)"
+                             width="100" height="100" style="border-radius: 20px">
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentOrder_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StatusPayment.StaPay_Name)
+                </td>
+                <td>
+                    <a class="btn btn-primary" href="@Url.Action("Detail","PaymentRoom",new {id=item.Payment_Id })">รายละเอียด</a>
+                    @if (item.Order.Sta_Id == 1)
+                    {
+                        <a class="btn btn-success" href="@Url.Action("Confirm","PaymentRoom",new {id=item.Payment_Id })">ยืนยันการชำระ</a>
+                    }
+                    <a class="btn btn-danger" onclick="Delete('@item.Payment_Id')">ลบ</a>
+                </td>
+            </tr>
+        </tbody>
+    }
+</table>
+@section Scripts{
+    <script src="~/Scripts/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#MyTable').DataTable();
+        });
+    </script>
+}
+<script>
+
+    function Delete(id) {
+        Swal.fire({
+            title: 'ต้องการลบใช่หรือไม่?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'ยืนยัน',
+            cancelButtonText: 'ยกเลิก'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                window.location.href = '@Url.Action("Delete", "PaymentRoom")/' + id
+            }
+        })
+    }
+</script>

@@ -1,0 +1,72 @@
+﻿@model ProjectEND.Models.Payment
+
+@{
+    ViewBag.Title = "Pay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var user = Session["USER"] as ProjectEND.Models.DataUser;
+    var star = Session["sta"];
+}
+
+
+<form action="@Url.Action("Pay", "PaymentRoom")" method="post" enctype="multipart/form-data">
+
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>ชำระเงิน</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaymentOrder_Id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PaymentOrder_Id, new { htmlAttributes = new { @Value = Session["OrderID"], @class = "form-control", @readonly = "true" } })
+                @Html.ValidationMessageFor(model => model.PaymentOrder_Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Order.DataUser.User_FristName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <p class="form-control">@user.User_FristName</p>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Order.DataUser.User_LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <a class="form-control">@user.User_LastName</a>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Payment_Date, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Payment_Date, new { htmlAttributes = new { @Value = DateTime.Now.ToString("yyyy/MM/dd"), @class = "form-control"} })
+                @Html.ValidationMessageFor(model => model.Payment_Date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StaPay_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("StaPay_Id", null, "---เลือกการชำระเงิน---", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.StaPay_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Payment_Pic, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Upfile, new { htmlAttributes = new { @class = "form-control" }, type = "file" })
+                    @Html.ValidationMessageFor(model => model.Payment_Pic, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="ตกลง" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
